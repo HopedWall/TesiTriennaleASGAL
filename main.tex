@@ -1,0 +1,88 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\usepackage[paper=a4paper,margin=1in]{geometry}
+
+\begin{document}
+	\pagenumbering{gobble}
+
+    \begin{titlepage}
+
+        \noindent
+        \begin{minipage}[t]{0.19\textwidth}
+            \vspace{-4mm}{\includegraphics[scale=1.15]{images/logo_unimib.pdf}}
+        \end{minipage}
+        \begin{minipage}[t]{0.81\textwidth}
+        {
+                \setstretch{1.42}
+                {\textsc{Università degli Studi di Milano - Bicocca}} \\
+                \textbf{Scuola di Scienze} \\
+                \textbf{Dipartimento di Informatica, Sistemistica e Comunicazione} \\
+                \textbf{Corso di laurea in Informatica} \\
+                \par
+        }
+        \end{minipage}
+
+	\vspace{40mm}
+
+	\begin{center}
+            {\LARGE{
+                    \setstretch{1.2}
+                    \textbf{Estensione di ASGAL \\ per read paired-end}
+                    \par
+            }}
+        \end{center}
+
+        \vspace{50mm}
+
+        \noindent
+        {\large \textbf{Relatore:} Prof. Della Vedova Gianluca } \\
+
+        \noindent
+        {\large \textbf{Correlatore:} Prof. Rizzi Raffaella}
+
+        \vspace{15mm}
+
+        \begin{flushright}
+            {\large \textbf{Relazione della prova finale di:}} \\
+            \large{Francesco Porto} \\
+            \large{Matricola 816042}
+        \end{flushright}
+
+        \vspace{40mm}
+        \begin{center}
+            {\large{\bf Anno Accademico 2018-2019}}
+        \end{center}
+
+        \restoregeometry
+
+    \end{titlepage}
+    \newpage
+    
+    % Abstract 
+    \begin{abstract}
+    In questa tesi si discuterà l'estensione di ASGAL (un tool sviluppato dall' AlgoLab in grado di rilevare eventi di Alternative Splicing)
+    per il supporto alle read in formato paired-end. 
+    Inizialmente verranno introdotti introdotti i concetti necessari per comprendere questo documento, oltre ad una panoramica sullo stato dell'arte.
+    Verranno poi evidenziate le principali modifiche apportate ad ASGAL, ponendo l'attenzione sulle differenze tra il formato single-end e quello paired-end.
+    Infine verrà mostrato un esempio di funzionamento, insieme ad alcuni possibili sviluppi futuri.
+    \end{abstract}
+    \newpage
+
+		% Tavola dei contenuti
+    \tableofcontents
+    \newpage
+    
+    \pagenumbering{arabic}
+
+		\section{Introduzione}
+    	\input{./chapters/asgal}
+    		%\subsection{Paired-end Reads}
+    		%\subsection{Alternative Splicing}
+
+
+
+\end{document}
