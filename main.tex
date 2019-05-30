@@ -1,4 +1,5 @@
 \documentclass[a4paper,12pt]{article}
+\setlength{\parindent}{0pt}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage[T1]{fontenc}
@@ -6,22 +7,24 @@
 \usepackage{setspace}
 \usepackage[paper=a4paper,margin=1in]{geometry}
 
+
 \begin{document}
 	\pagenumbering{gobble}
 
 	\include{./chapters/frontespizio}
     
-   \newpage
+  \newpage
     
-    % Abstract 
-    \begin{abstract}
-    In questa tesi si discuterà l'estensione di ASGAL (un tool sviluppato dall' AlgoLab in grado di rilevare eventi di Alternative Splicing)
-    per il supporto alle read in formato paired-end. 
-    Inizialmente verranno introdotti introdotti i concetti necessari per comprendere questo documento, oltre ad una panoramica sullo stato dell'arte.
-    Verranno poi evidenziate le principali modifiche apportate ad ASGAL, ponendo l'attenzione sulle differenze tra il formato single-end e quello paired-end.
-    Infine verrà mostrato un esempio di funzionamento, insieme ad alcuni possibili sviluppi futuri.
-    \end{abstract}
-    \newpage
+   % Abstract 
+   \begin{abstract}
+   In questa tesi si discuterà l'estensione di ASGAL (un tool sviluppato dall' AlgoLab in grado di rilevare eventi di Alternative Splicing)
+   per il supporto alle read in formato paired-end. 
+   Inizialmente verranno introdotti introdotti i concetti necessari per comprendere questo documento, oltre ad una panoramica sullo stato dell'arte.
+   Verranno poi evidenziate le principali modifiche apportate ad ASGAL, ponendo l'attenzione sulle differenze tra il formato single-end e quello paired-end.
+   Infine verrà mostrato un esempio di funzionamento, insieme ad alcuni possibili sviluppi futuri.
+   \end{abstract}
+   
+   \newpage
 
 		% Tavola dei contenuti
     \tableofcontents
@@ -29,11 +32,11 @@
     
     \pagenumbering{arabic}
 
-		\section{Introduzione}
-    	\input{./chapters/asgal}
-    	%\subsection{Paired-end Reads}
-    	%\subsection{Alternative Splicing}
-
+    	\include{./chapters/asgal}
+    	\include{./chapters/alternativesplicing}
+    	\include{./chapters/pairedendreads}
+    	
+    	\section{Modifiche effettuate ad ASGAL}
 
 
 \end{document}
