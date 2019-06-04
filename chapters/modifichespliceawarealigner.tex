@@ -31,7 +31,7 @@ La loro implementazione è banale: si tengono due contatori (che rappresentano r
 			\State $addPlaceholder(file2)$
 			\State $count2++$
 		\EndIf
-	\EndWhile\label{euclidendwhile}
+	\EndWhile
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
@@ -40,7 +40,7 @@ La loro implementazione è banale: si tengono due contatori (che rappresentano r
 	\centering
 	\includegraphics[width=\linewidth]{images/tipiMEM2.png}
   \caption{I diversi tipi di MEM}
-  \label{fig:AlternativeSplicingTypes}
+  \label{fig:MEMTypes}
 \end{figure}
 
 \newpage
@@ -65,11 +65,11 @@ La seguente immagine descrive tutte le possibili combinazioni:
 
 ASGAL utilizza queste informazioni per velocizzare il processo di allineamento. Nel formato single-end questa informazioni non esiste, quindi ogni read veniva allineata in entrambe le direzioni, e si prendeva l'allineamento migliore dei due. 
 
-Nel formato paired-end, si può utilizzare la ftl per ridurre il numero di allineamenti necessari, fino al 50% nel caso stranded. Ad esempio, se viene fornita un ftl di tipo ISF è sufficiente allineare la read 1 sullo strand + (ignorando lo strand -) e la read 2 sullo strand - (ignorando lo strand +).
+Nel formato paired-end, si può utilizzare la ftl per ridurre il numero di allineamenti necessari, fino al 50\% nel caso stranded. Ad esempio, se viene fornita un ftl di tipo ISF è sufficiente allineare la read 1 sullo strand + (ignorando lo strand -) e la read 2 sullo strand - (ignorando lo strand +).
 
 Il caso unstranded richiede un po' più di attenzione: non è infatti possibile sapere a priori su quale strand allineare la prima read. Per risolvere questo problema è stata riutilizzata la vecchia procedura di allineamento della prima read in entrambe le direzioni; una volta trovata la direzione migliore per la prima, la seconda viene di conseguenza. 
 
-Supponiamo ad esempio di avere una libreria in formato MU: se la prima read allinea sullo strand +, di conseguenza anche la seconda sarà allineata sullo strand +; viceversa, se la prima read allinea sullo strand -, anche la seconda allinea sempre sullo strand -. In questo caso si ottiene solo una riduzione del 25% nel numero degli allineamenti.
+Supponiamo ad esempio di avere una libreria in formato MU: se la prima read allinea sullo strand +, di conseguenza anche la seconda sarà allineata sullo strand +; viceversa, se la prima read allinea sullo strand -, anche la seconda allinea sempre sullo strand -. In questo caso si ottiene solo una riduzione del 25\% nel numero degli allineamenti.
 
 Qualora il tipo di libreria non venga fornito dall'utente, rimane necessario provare ad allineare le read in entrambe le direzioni, senza alcuni incremento di prestazioni.
 
