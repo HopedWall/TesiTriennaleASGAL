@@ -9,7 +9,7 @@
 %\usepackage[ruled,vlined]{algorithm2e}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
-
+\usepackage{float}
 
 \begin{document}
 	\pagenumbering{gobble}
@@ -32,6 +32,7 @@
     \newpage
     
     \pagenumbering{arabic}
+    \setlength{\parskip}{0.5em}
 
     	\include{./chapters/asgal}
     	\include{./chapters/alternativesplicing}
@@ -44,6 +45,8 @@
     	\include{./chapters/modificherilevazioneas}
     	
     	\include{./chapters/esempiofunzionamento}
+    	
+    	\include{./chapters/competenzeacquisite}
     	
 		\include{./chapters/conclusioni}
 
