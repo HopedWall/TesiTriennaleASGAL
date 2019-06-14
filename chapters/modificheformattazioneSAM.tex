@@ -29,24 +29,37 @@ Si noti che per il momento non viene tenuto conto dei flag 0x200 e 0x400, ma que
 
 \newpage
 
-\subsection{Calcolo dell' IDMP medio}
-Considerando una coppia di read, si definisce IDMP (Inner Distance between Mate Pairs) la distanza sul genoma di riferimento in termini di BP (Base Pair) tra l'ultima base della prima read e la prima della seconda. Questa informazione viene generalmente fornita dall'ente che ha effettuato il sequenziamento, e può essere confrontata con l'IDMP medio rilevato durante l'allineamento per rilevare nuovi eventi di Alternative Splicing.
+\subsection{Calcolo dei campi RNEXT, PNEXT e TLEN}
+I campi TLEN, RNEXT e PNEXT rappresentano rispettivamente il settimo, l'ottavo e il nono campo di ogni record del formato SAM; essi sono praticamente inutilizzati quando si allineano read single-end, ma nel formato paired-end assumono maggiore importanza. In particolare i campi RNEXT e PNEXT sono utilizzati da strumenti di visualizzazione degli allineamenti (come ad esempio IGV) per permettere una corretta visualizzazione di una read e del suo mate.
 
-Prima di poter calcolare l'IDMP è necessario introdurre il concetto di BitVector, ovvero una sequenza di bit che rappresenta la posizione degli esoni nella genomica. Un BitVector è dotato di due operazioni:
+Il campo RNEXT contiene il nome dell'allineamento relativo al mate (ovvero il suo campo PNAME). Per semplicità, quando i due allineamenti sono consecutivi, si può lasciare il suo valore a '='.
 
-\begin{itemize}
-	\item Rank: data una posizione, ritorna l'esone di provenienza
-	\item Select: dato un esone, ritorna la posizione di partenza 
-\end{itemize}
+Il campo PNEXT contiene la posizione iniziale 1-based dell'allineamento relativo al mate (ovvero il suo campo POS. Qualora il mate fosse unmapped, si utilizza il valore 0.
 
+Il campo TLEN rappresenta la distanza la lunghezza del template osservato, ovvero la distanza (sul genoma) tra l'inizio della prima read e la fine della seconda. Per la sua computazione è sufficiente trovare la posizione finale del secondo allineamento e sottrarre la posizione iniziale del primo.
 
+La seguente immagine mostra un esempio di allineamento visualizzato da IGV:
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{images/mateinfo.png}
+  \caption{Informazioni su mate da SAM formato correttamente}
+  \label{fig:Mate info}
+\end{figure}
 
 \newpage
 
-\subsection{Calcolo del TIDMP}
-
-\newpage
+E' importante notare che, se questi campi sono settati correttamente, lasciando il cursore del mouse su un allineamento vengono visualizzate tutte le informazioni relative al mate. Al contrario, se si prova ad indicizzare il file BAM (la versione binaria del formato SAM) per l'utilizzo con IGV, e questi campi non sono stati settati correttamente, verrà visualizzato un errore. Un esempio errore è il seguente: se il campo FLAG non contiene 0x8 (quindi il mate è mapped), e si inserisce un valore di PNEXT diverso da 0, al momento dell'indicizzazione sarà visualizzato il messaggio "mapped mate cannot have zero coordinate; treated as unmapped".
 
 \subsection{Calcolo delle statistiche dell'allineamento}
+Seguendo l'esempio di altri allineatori (come ad esempio STAR), è stato deciso di visualizzare alcune statistiche in fase di allineamento, quali:
 
+\begin{itemize}
+	\item Numero di read mappate e non mappate
+	\item Numero di allineamenti primari e secondari
+	\item IDMP
+	\item tIDMP
+\end{itemize}
+
+Questi valori sono visualizzati nel file \textit{.alignsinfo.txt}. Anche se non hanno finalità particolari per la rilevazione di eventi di Alternative Splicing, essi forniscono uno strumento per valutare la qualità degli allineamenti effettuati da ASGAL.
 \newpage
