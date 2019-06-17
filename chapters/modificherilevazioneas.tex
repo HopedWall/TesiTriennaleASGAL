@@ -6,6 +6,10 @@
 
 \subsection{Fusione degli introni dedotti dai due sample}
 
+Come già detto in precedenza, i nuovi introni rilevati dagli allineamenti vengono estratti dal file MEM e confrontati con quelli già noti al fine di rilevare eventi di Alternative Splicing. In questo senso, la versione paired rileva i nuovi introni da ciascuno dei due file MEM, e li fonde.
+
+%Rivedere
+
 \newpage
 
 \subsection{Calcolo dell' IDMP (Inner Distance between Mate Pairs)}
@@ -20,12 +24,25 @@ Visto che un allineamento può essere rappresentato da più di un MEM, non è po
 
 Queste due operazioni permettono di calcolare l'IDMP in maniera efficace. Innanzitutto si prende l'ultimo MEM relativo all'allineamento della prima read, e si utilizza l'operazione di Rank per trovare l'esone di appartenenza. A questo punto, si utilizza l'operazione di Rank per trovare la posizione iniziale dell'esone. L'offset sarà quindi dato dalla differenza tra il MEM e la posizione iniziale dell'esone. Basta quindi aggiungere questo offset alla posizione iniziale per trovare la fine del primo allineamento.
 
+% Sistemare, spiegare come viene calcolato.
+L'inizio del secondo allineamento è noto. A questo punto basterà sottrarre ad esso la fine di quello precedente, in modo da ottenere l'IDMP.
+
 Il seguente algoritmo riassume la procedura:
 
 \newpage
 
 \subsection{Calcolo del TIDMP (Transcript-based IDMP)}
-Per TIDMP si intende la misura della distanza \textit{sui trascritti} tra le due read. Per il momento viene calcolata solo su esoni consecutivi.
+Per TIDMP si intende la misura della distanza \textit{sui trascritti} tra le due read. Per calcolarlo è innanzitutto necessario ottenere l'ultimo MEM relativo alla prima read e il primo MEM relativo alla seconda. Da ciascuno di essi è possibile ottenere la posizione iniziale e la lunghezza sul bitvector. A questo punto, usando l'operazione di rank, è possibile capire l'esone di provenienza di ciascun MEM.
+
+Se i due MEM si trovano sullo stesso esone, il TIDMP è dato semplicemente dalla distanza tra la fine del primo MEM e l'inizio del secondo (sarà quindi uguale all' IDMP calcolato precedentemente).
+
+Se i due MEM non si trovano sullo stesso esone, potrebbero essere su due esoni consecutivi o meno. Nel caso di esoni consecutivi, il TIDMP è dato dalla somma tra il suffisso non coperto dal primo esone e il prefisso non coperto dal secondo esone.
+
+Il seguente algoritmo mostra come calcolare il TIDMP:
+
+
+
+Il caso di esoni non consecutivi presenta diverse criticità, e per il momento non è stato calcolato.
 
 \newpage
 

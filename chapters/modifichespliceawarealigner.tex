@@ -13,8 +13,6 @@ L'allineamento avviene utilizzando il concetto di MEM (Maximum Exact Matching); 
 \subsection{Allineamento di entrambe le read}
 Il primo problema da affrontare è ovviamente il fatto che sia ora necessario allineare due read e non una; fortunatamente si tratta solo di iterare il processo di allineamento su una coppia di read ad ogni ciclo, anziché su read singola. Verranno quindi generati due file contenti MEM anziché uno. Sarà poi compito della Formattazione SAM "fondere" i due file MEM per ottenere un SAM Completo.
 
-\newpage
-
 \subsection{Introduzione di read unmapped e "placeholder" nel formato MEM}
 Nei file MEM ottenuti dallo Splice-Aware Aligner vengono ora visuallizati due nuovi tipi di MEM: quelli relativi alle read unmapped e quelli relativi ai "placeholder". Il primo caso è banale, e rappresenta tutte quelle read che non hanno un matching esatto di lunghezza considerevole con il genoma dato in input.
 
