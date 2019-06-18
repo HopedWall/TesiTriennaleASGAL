@@ -9,6 +9,32 @@ In questa sezione saranno descritte le principali modifiche apportate al Formatt
 
 \newpage
 
+\subsection{Formato SAM}
+Il formato SAM (Sequence Alignment Map) è composto da 11 campi:
+
+\begin{enumerate}
+	\item QNAME: Il nome identificativo dell'allineamento
+	\item FLAG: Una serie di flag binari che identificano le caratteristiche dell'allineamento
+	\item RNAME: Identificativo del gene di riferimento
+	\item POS: Posizione 1-based di inizio dell'allineamento sul genoma
+	\item MAPQ:  Qualità dell'allineamento
+	\item CIGAR: Stringa che identifica le operazioni effettuate per ottenere l'allineamento
+	\item RNEXT: QNAME del mate (solo paired-end)
+	\item PNEXT: POS del mate	(solo paired-end)
+	\item TLEN:  Distanza tra mate (solo paired-end)
+	\item SEQ:  	Allineamento vero e proprio
+	\item QUAL: Valore Phread della read
+\end{enumerate}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{images/esempioSAM.png}
+  \caption{Un esempio di file SAM prodotto da ASGAL}
+  \label{fig:AlternativeSplicingTypes}
+\end{figure}
+
+\newpage
+
 \subsection{Modifiche alla computazione del campo FLAG}
 Il campo FLAG è il secondo del formato SAM e consiste di un valore numerico (ottenuto convertendo in decimale una serie di flag binari) che rappresenta le caratteristiche dell'allineamento preso in esame. La seguente immagine mostra il significato di ciascun bit del flag:
 
