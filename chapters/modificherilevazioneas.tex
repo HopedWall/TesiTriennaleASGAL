@@ -1,8 +1,24 @@
-\section{Rilevatore di Eventi di Alternative Splicing}
+\section{Rilevazione degli eventi di Alternative Splicing}
 
-\subsection{Cos'è e come funziona}
+\subsection{Descrizione generale}
 
-\newpage
+Il Rilevatore di Eventi di Alternative Splicing si occupa di rilevare tutti gli eventi indotti dalle read. Per fare questo, confronta gli introni noti (deducibili dal file gtf) con quelli \textit{novel} (deducibili dagli allineamenti in formato MEM); analizzando le differenze tra i due è possibile rilevare gli eventi di Alternative Splicing.
+
+Trovare gli introni noti è semplice, in quanto nel file gtf sono riportati tutti gli esoni con le relative posizioni di inizio e fine: gli introni sono quindi rappresentati dalla porzione di genoma tra un esone e un altro. 
+
+La rilevazione degli introni novel è invece più complessa... %Da sistemare...
+
+Viene poi eseguita una fase di riconciliazione (una procedura basata su pattern noti che permette di migliorare la qualità degli introni rilevati) e vengono filtrati quelli non supportati da un numero sufficiente di read.
+
+A questo punto avviene la procedura di rilevazione vera e propria... %Da sistemare ...
+
+Gli eventi di Alternative Splicing così rilevati saranno poi riportati in un file \textit{.events.csv}, che contiene, per ogni evento rilevato:
+\begin{enumerate}
+	\item Il tipo di evento rilevato
+	\item Le posizioni iniziali e finali sul genoma
+	\item Il numero di read che supportano l'evento
+	\item I transcritti che supportano l'evento
+\end{enumerate}
 
 \subsection{Fusione degli introni dedotti dai due sample}
 
