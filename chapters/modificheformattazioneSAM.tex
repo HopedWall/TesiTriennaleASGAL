@@ -17,13 +17,13 @@ Il formato SAM (Sequence Alignment Map) è composto da 11 campi:
 	\item FLAG: Una serie di flag binari che identificano le caratteristiche dell'allineamento
 	\item RNAME: Identificativo del gene di riferimento
 	\item POS: Posizione 1-based di inizio dell'allineamento sul genoma
-	\item MAPQ:  Qualità dell'allineamento
+	\item MAPQ:  Valore che indica la qualità dell'allineamento
 	\item CIGAR: Stringa che identifica le operazioni effettuate per ottenere l'allineamento
 	\item RNEXT: QNAME del mate (solo paired-end)
 	\item PNEXT: POS del mate	(solo paired-end)
 	\item TLEN:  Distanza tra mate (solo paired-end)
 	\item SEQ:  	Allineamento vero e proprio
-	\item QUAL: Valore Phread della read
+	\item QUAL: Valore che indica la qualità delle read
 \end{enumerate}
 
 \begin{figure}[h]
@@ -81,11 +81,17 @@ E' importante notare che, se questi campi sono settati correttamente, lasciando 
 Seguendo l'esempio di altri allineatori (come ad esempio STAR), è stato deciso di visualizzare alcune statistiche in fase di allineamento, quali:
 
 \begin{itemize}
-	\item Numero di read mappate e non mappate
+	\item Numero di read mappate, non mappate e "placeholder"
 	\item Numero di allineamenti primari e secondari
 	\item IDMP
 	\item tIDMP
 \end{itemize}
 
 Questi valori sono visualizzati nel file \textit{.alignsinfo.txt}. Anche se non hanno finalità particolari per la rilevazione di eventi di Alternative Splicing, essi forniscono uno strumento per valutare la qualità degli allineamenti effettuati da ASGAL.
-\newpage
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[height=7cm,width=12cm]{images/aligninfo.png}
+  \caption{Esempio di file \textit{.alignsinfo.txt}}
+  \label{fig:AlternativeSplicingTypes}
+\end{figure}
