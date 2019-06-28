@@ -6,11 +6,29 @@ Il Rilevatore di Eventi di Alternative Splicing si occupa di rilevare tutti gli 
 
 Trovare gli introni noti è semplice, in quanto nel file gtf sono riportati tutti gli esoni con le relative posizioni di inizio e fine: gli introni sono quindi rappresentati dalla porzione di genoma tra un esone e un altro. 
 
-La rilevazione degli introni novel è invece più complessa... %Da sistemare...
+La rilevazione degli introni novel è invece più complessa, e utilizza i MEMs generati dello Splice-Aware Aligner. Preso un generico allineamento, esso può essere rappresentato da uno o più MEMs. Nel secondo caso viene calcolata la distanza tra di essi sia sul genoma che sul testo degli esoni; si considerano introni tutte le porzioni del genoma dove questi due valori differiscono.
 
-Viene poi eseguita una fase di riconciliazione (una procedura basata su pattern noti che permette di migliorare la qualità degli introni rilevati) e vengono filtrati quelli non supportati da un numero sufficiente di read.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth, height=7cm]{images/pattern.png}
+  \caption{Fase di confronto degli introni}
+  \label{fig:Summary}
+\end{figure}
 
-A questo punto avviene la procedura di rilevazione vera e propria... %Da sistemare ...
+Viene poi eseguita una fase di riconciliazione (che permette di migliorare la qualità degli introni rilevati) e vengono filtrati quelli non supportati da un numero sufficiente di read.
+
+A questo punto avviene la procedura di rilevazione vera e propria, che confronta gli introni novel con quelli noti, utilizzando dei pattern che rappresentano i vari eventi di Alternative Splicing.
+
+La seguente immagine riassume la procedura:
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth, height=5cm]{images/riassuntorilevazione.png}
+  \caption{Riassunto della fase di rilevazione}
+  \label{fig:Summary}
+\end{figure}
+
+\newpage
 
 Gli eventi di Alternative Splicing così rilevati saranno poi riportati in un file \textit{.events.csv}, che contiene, per ogni evento rilevato:
 \begin{enumerate}
@@ -20,11 +38,18 @@ Gli eventi di Alternative Splicing così rilevati saranno poi riportati in un fi
 	\item I transcritti che supportano l'evento
 \end{enumerate}
 
-\subsection{Fusione degli introni dedotti dai due sample}
+\subsection{Merge degli introni dedotti dai due sample}
 
-Come già detto in precedenza, i nuovi introni rilevati dagli allineamenti vengono estratti dal file MEM e confrontati con quelli già noti al fine di rilevare eventi di Alternative Splicing. In questo senso, la versione paired rileva i nuovi introni da ciascuno dei due file MEM, e li fonde.
+Come già detto in precedenza, i MEMs generati dallo Splice-Aware Aligner vengono utilizzati al fine di rilevare nuovi introni; ovviamente è necessario estendere questa procedura alle read paired-end. Si tratta in sostanza di fare una merge degli introni dedotti da ciascuno dei due file.
 
-%Rivedere
+Il seguente frammento di codice mostra la procedura:
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{images/mergeIntrons.png}
+  \label{fig:MergeIntrons}
+\end{figure}
+
 
 \newpage
 
@@ -43,7 +68,13 @@ Queste due operazioni permettono di calcolare l'IDMP in maniera efficace. Innanz
 % Sistemare, spiegare come viene calcolato.
 L'inizio del secondo allineamento è noto. A questo punto basterà sottrarre ad esso la fine di quello precedente, in modo da ottenere l'IDMP.
 
-Il seguente algoritmo riassume la procedura:
+Il seguente frammento di codice riassume la procedura:
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth, height=9.5cm]{images/getIDMP.png}
+  \label{fig:GetIDMP}
+\end{figure}
 
 \newpage
 
@@ -54,9 +85,21 @@ Se i due MEM si trovano sullo stesso esone, il TIDMP è dato semplicemente dalla
 
 Se i due MEM non si trovano sullo stesso esone, potrebbero essere su due esoni consecutivi o meno. Nel caso di esoni consecutivi, il TIDMP è dato dalla somma tra il suffisso non coperto dal primo esone e il prefisso non coperto dal secondo esone.
 
-Il seguente algoritmo mostra come calcolare il TIDMP:
+Il seguente frammento di codice mostra come calcolare il TIDMP:
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth, height=9.5cm]{images/gettIDMP1.png}
+  \label{fig:GettIDMP}
+\end{figure}
 
+\newpage
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth, height=9.5cm]{images/gettIDMP2.png}
+  \label{fig:GettIDMP}
+\end{figure}
 
 Il caso di esoni non consecutivi presenta diverse criticità, e per il momento non è stato calcolato.
 

@@ -1,37 +1,27 @@
 \section{Conversione in formato SAM}
 
-\subsection{Cos'è e come funziona}
-Come già detto, gli allineamenti ottenuti dallo Splice-Aware aligner sono in un formato non standard chiamato MEM (nota: l'acronimo MEM si riferisce sia al formato dell'output che all'estensione del file ottenuto). L'obiettivo di questa seconda parte è quello di convertire i due file MEM in un singolo file SAM (Sequence Alignment Map), il formato standard per memorizzare gli allineamenti.
+\subsection{Descrizione generale}
+Come già detto, gli allineamenti ottenuti dallo Splice-Aware aligner sono in un formato non standard chiamato MEM, che contiene solo informazioni relative ai MEMs ottenuti in fase di allineamento. L'obiettivo di questa seconda parte è quello di convertire i due file MEM in un singolo file SAM (Sequence Alignment Map), il formato standard per memorizzare gli allineamenti.
 
-Non si tratta solo di una semplice conversione, in quanto è necessario indurre diverse informazioni aggiuntive per avere un file SAM standard, quali: la posizione di inizio dell'allineamento sulla genomica, la stringa CIGAR, i flag relativi all'allineamento, ecc. Per supportare le read paired-end è stato necessario modificare gran parte di queste funzionalità.
-
-In questa sezione saranno descritte le principali modifiche apportate al Formattatore SAM, oltre ad alcune funzionalità aggiuntive utili per la rilevazione di eventi di Alternative Splicing.
-
-\newpage
-
-\subsection{Formato SAM}
 Il formato SAM (Sequence Alignment Map) è composto da 11 campi:
 
 \begin{enumerate}
-	\item QNAME: Il nome identificativo dell'allineamento
-	\item FLAG: Una serie di flag binari che identificano le caratteristiche dell'allineamento
-	\item RNAME: Identificativo del gene di riferimento
-	\item POS: Posizione 1-based di inizio dell'allineamento sul genoma
-	\item MAPQ:  Valore che indica la qualità dell'allineamento
-	\item CIGAR: Stringa che identifica le operazioni effettuate per ottenere l'allineamento
-	\item RNEXT: QNAME del mate (solo paired-end)
-	\item PNEXT: POS del mate	(solo paired-end)
-	\item TLEN:  Distanza tra mate (solo paired-end)
-	\item SEQ:  	Allineamento vero e proprio
-	\item QUAL: Valore che indica la qualità delle read
+	\item \textbf{QNAME}: Il nome identificativo dell'allineamento
+	\item \textbf{FLAG}: Una serie di flag binari che identificano le caratteristiche dell'allineamento
+	\item \textbf{RNAME}: Identificativo del gene di riferimento
+	\item \textbf{POS}: Posizione 1-based di inizio dell'allineamento sul genoma
+	\item \textbf{MAPQ}:  Valore che indica la qualità dell'allineamento
+	\item \textbf{CIGAR}: Stringa che identifica le operazioni effettuate per ottenere l'allineamento
+	\item \textbf{RNEXT}: QNAME del mate (solo paired-end)
+	\item \textbf{PNEXT}: POS del mate	(solo paired-end)
+	\item \textbf{TLEN}:  Distanza tra mate (solo paired-end)
+	\item \textbf{SEQ}:  	Allineamento vero e proprio
+	\item \textbf{QUAL}: Valore che indica la qualità delle read
 \end{enumerate}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=\linewidth]{images/esempioSAM.png}
-  \caption{Un esempio di file SAM prodotto da ASGAL}
-  \label{fig:AlternativeSplicingTypes}
-\end{figure}
+Non si tratta solo di una semplice conversione, in quanto è necessario indurre diverse informazioni aggiuntive per avere un file SAM standard, quali: la posizione di inizio dell'allineamento sulla genomica, la stringa CIGAR, i flag relativi all'allineamento, ecc. 
+
+Per supportare le read paired-end è stato necessario modificare gran parte di queste funzionalità.
 
 \newpage
 

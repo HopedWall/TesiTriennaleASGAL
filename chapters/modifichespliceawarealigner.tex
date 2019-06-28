@@ -48,24 +48,6 @@ La loro implementazione è banale: si tengono due contatori (che rappresentano r
 
 \newpage
 
-\begin{algorithm}[h!]
-\caption{Algoritmo per l'aggiunta dei placeholder}\label{placeholder}
-\begin{algorithmic}[1]
-\Procedure{addPlaceholders}{$count1,count2,file1,file2$}
-	%\State $count1 \gets 0, count\_aligns\_2 \gets 0$
-	\While{$count1 != count2$}
-		\If{$count1 < count2$}
-			\State $addPlaceholder(file1)$
-			\State $count1++$
-		\Else
-			\State $addPlaceholder(file2)$
-			\State $count2++$
-		\EndIf
-	\EndWhile
-\EndProcedure
-\end{algorithmic}
-\end{algorithm}
-
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{images/tipiMEM3.png}
