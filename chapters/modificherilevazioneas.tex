@@ -32,10 +32,10 @@ La seguente immagine riassume la procedura:
 
 Gli eventi di Alternative Splicing così rilevati saranno poi riportati in un file \textit{.events.csv}, che contiene, per ogni evento rilevato:
 \begin{enumerate}
-	\item Il tipo di evento rilevato
-	\item Le posizioni iniziali e finali sul genoma
-	\item Il numero di read che supportano l'evento
-	\item I transcritti che supportano l'evento
+	\item Il \textbf{tipo di evento} rilevato
+	\item Le \textbf{posizioni iniziali e finali} sul genoma
+	\item Il \textbf{numero di read} che supportano l'evento
+	\item I \textbf{trascritti} che supportano l'evento
 \end{enumerate}
 
 \subsection{Merge degli introni dedotti dai due sample}
@@ -57,7 +57,7 @@ Il seguente frammento di codice mostra la procedura:
 \subsection{IDMP (Inner Distance between Mate Pairs)}
 Considerando una coppia di read, si definisce IDMP (Inner Distance between Mate Pairs) la distanza sul genoma di riferimento tra l'ultima base della prima read e la prima della seconda. Questa informazione viene generalmente fornita dall'ente che ha effettuato il sequenziamento, e può essere confrontata con l'IDMP rilevato durante l'allineamento per rilevare nuovi eventi di Alternative Splicing.
 
-Visto che un allineamento può essere rappresentato da più di un MEM, non è possibile semplicemente aggiungere la lunghezza dell'allineamento alla sua posizione iniziale. Prima di poter calcolare l'IDMP è quindi necessario introdurre il concetto di BitVector, ovvero una sequenza di bit che rappresenta la posizione degli esoni nella genomica. Un BitVector è dotato di due operazioni:
+Visto che un allineamento può essere rappresentato da più di un MEM, non è possibile semplicemente aggiungere la lunghezza dell'allineamento alla sua posizione iniziale. Prima di poter calcolare l'IDMP è quindi necessario introdurre il concetto di BitVector, ovvero una sequenza di bit che rappresenta la posizione degli esoni nello Splicing Graph. Un BitVector è dotato di due operazioni, entrambe svolte in tempo costante:
 
 \begin{itemize}
 	\item Rank: data una posizione, ritorna l'esone di provenienza
