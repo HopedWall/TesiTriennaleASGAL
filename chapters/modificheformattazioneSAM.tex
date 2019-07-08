@@ -19,13 +19,11 @@ Il formato SAM (Sequence Alignment Map) è composto da 11 campi:
 	\item \textbf{QUAL}: Valore che indica la qualità delle read
 \end{enumerate}
 
-Non si tratta solo di una semplice conversione, in quanto è necessario indurre diverse informazioni aggiuntive per avere un file SAM standard, quali: la posizione di inizio dell'allineamento sulla genomica, la stringa CIGAR, i flag relativi all'allineamento, ecc. 
-
-Per supportare le read paired-end è stato necessario modificare gran parte di queste funzionalità.
+Non si tratta solo di una semplice conversione, in quanto è necessario indurre diverse informazioni aggiuntive per avere un file SAM standard, quali: la posizione di inizio dell'allineamento sulla genomica, la stringa CIGAR, i flag relativi all'allineamento, ecc. Per supportare le read paired-end è stato necessario modificare gran parte di queste funzionalità. In particolare, è stata modificato il modo in cui vengono calcolati i campi FLAG, RNEXT, PNEXT e TLEN.
 
 \newpage
 
-\subsection{Modifiche alla computazione del campo FLAG}
+\subsection{Computazione del campo FLAG per read paired-end}
 Il campo FLAG è il secondo del formato SAM e consiste di un valore numerico (ottenuto convertendo in decimale una serie di flag binari) che rappresenta le caratteristiche dell'allineamento preso in esame. La seguente immagine mostra il significato di ciascun bit del flag:
 
 \begin{figure}[h]
@@ -45,7 +43,7 @@ Si noti che per il momento non viene tenuto conto dei flag 0x200 e 0x400, ma que
 
 \newpage
 
-\subsection{Calcolo dei campi RNEXT, PNEXT e TLEN}
+\subsection{Computazione dei campi RNEXT, PNEXT e TLEN}
 I campi TLEN, RNEXT e PNEXT rappresentano rispettivamente il settimo, l'ottavo e il nono campo di ogni record del formato SAM; essi sono praticamente inutilizzati quando si allineano read single-end, ma nel formato paired-end assumono maggiore importanza. In particolare i campi RNEXT e PNEXT sono utilizzati da strumenti di visualizzazione degli allineamenti (come ad esempio IGV) per permettere una corretta visualizzazione di una read e del suo mate.
 
 Il campo RNEXT contiene il nome dell'allineamento relativo al mate (ovvero il suo campo PNAME). Per semplicità, quando i due allineamenti sono consecutivi, si può lasciare il suo valore a '='.
@@ -60,7 +58,7 @@ La seguente immagine mostra un esempio di allineamento visualizzato da IGV:
 	\centering
 	\includegraphics[width=\linewidth]{images/mateinfo.png}
   \caption{Informazioni su mate da SAM formato correttamente}
-  \label{fig:Mate info}
+  \label{fig:MateInfo}
 \end{figure}
 
 \newpage
@@ -74,14 +72,14 @@ Seguendo l'esempio di altri allineatori (come ad esempio STAR), è stato deciso 
 	\item Numero di read mappate, non mappate e "placeholder"
 	\item Numero di allineamenti primari e secondari
 	\item IDMP
-	\item tIDMP
+	\item TIDMP
 \end{itemize}
 
-Questi valori sono visualizzati nel file \textit{.alignsinfo.txt}. Anche se non hanno finalità particolari per la rilevazione di eventi di Alternative Splicing, essi forniscono uno strumento per valutare la qualità degli allineamenti effettuati da ASGAL.
+Questi valori sono visualizzati nel file \textit{.alignsinfo.txt}. Anche se non hanno finalità particolari per la rilevazione di eventi di Alternative Splicing, essi forniscono uno strumento per valutare la qualità degli allineamenti effettuati da ASGAL. IDMP e TIDMP saranno spiegati nel capitolo relativo agli sviluppi futuri.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[height=7cm,width=12cm]{images/aligninfo.png}
+	\includegraphics[height=5.5cm,width=8cm]{images/aligninfo.png}
   \caption{Esempio di file \textit{.alignsinfo.txt}}
-  \label{fig:AlternativeSplicingTypes}
+  \label{fig:AlignsInfo}
 \end{figure}

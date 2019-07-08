@@ -28,6 +28,8 @@ Il nuovo formato paired-end è stato qui utilizzato per velocizzare il processo 
 
 Il risultato dell'allineamento sarà restituito, per comodità, nel formato proprietario \textit{.mem}, che potrà eventualmente essere convertito in SAM (il formato standard per gli allineamenti) negli step successivi.
 
+\newpage
+
 \subsection{Allineamento di entrambe le read}
 %Il primo problema da affrontare è ovviamente il fatto che sia ora necessario allineare due read per ciclo e non una; fortunatamente si tratta solo di iterare il processo di allineamento su una coppia di read ad ogni ciclo, anziché su read singola. Verranno quindi generati due file contenti MEM anziché uno. Sarà poi compito della Formattazione SAM "fondere" i due file MEM per ottenere un SAM Completo.
 La prima differenza sostanziale rispetto al caso single-end è che nel caso paired-end le read da allineare sono sostanzialmente due (ovvero le due estremità); bisogna inoltre tenere conto della distanza tra di esse. 
@@ -39,14 +41,29 @@ Resta comunque fondamentale riuscire a collegare i MEM delle due estremità tra 
 Non è però detto che entrambe le estremità abbiano lo stesso numero di MEM ad esse associate (ovvero lo stesso numero di allineamenti che le coinvolgono) e nemmeno che li abbiano. E' quindi necessario introdurre nuovi tipi di MEM per questi casi.
 
 
-\subsection{Introduzione di read unmapped e "placeholder" nel formato MEM}
-Nei file MEM ottenuti dallo Splice-Aware Aligner vengono ora visuallizati due nuovi tipi di MEM: quelli relativi alle read unmapped e quelli relativi ai "placeholder". Il primo caso è banale, e rappresenta tutte quelle read che non hanno un matching esatto di lunghezza considerevole con il genoma dato in input.
+\subsection{Introduzione di read unmapped e "placeholder" nel formato mem}
+Nei file mem ottenuti dallo Splice-Aware Aligner vengono ora visuallizati due nuovi tipi di MEM: quelli relativi alle read unmapped e quelli relativi ai "placeholder". Il primo caso è banale, e rappresenta tutte quelle read che non hanno un matching esatto di lunghezza considerevole con il genoma dato in input.
 
 Il secondo caso è più complesso e rappresenta un insieme di read fasulle utilizzate solo come padding per avere due file MEM della stessa lunghezza: questo facilita enormemente l'elaborazione nello step successivo (la formattazione SAM). Come detto in precedenza quando si lavora con read paired-end è sempre necessario lavorare a coppie, ma non sempre ad uno stesso pair è associato lo stesso numero di allineamenti secondari: è qui che entrano in gioco i "placeholder". 
 
 La loro implementazione è banale: si tengono due contatori (che rappresentano rispettivamente il numero di allineamenti relativi alla prima read e quelli relativi alla seconda read), si ottengono separatamente gli allineamenti relativi a ciascuna delle due read, e si controllano i contatori. Si prende il minore dei due e si aggiungono tanti placeholder quanto bastano per rendere uguali i contatori.
 
+E' stato inoltre necessario introdurre un nuovo campo nel formato \textit{.mem}, che permette di distinguere il tipo di MEM preso in esame: ad esempio trovando come primo valore la stringa "MAPPED", si capisce che il MEM preso in esame è relativo ad una read che è stata mappata correttamente; ovviamente vale lo stesso ragionamento con le stringhe "UNMAPPED" e "PLACEHOLDER".
+
 \newpage
+
+Il nuovo formato mem è così composto:
+
+\begin{itemize}
+	\item Il tipo di MEM
+	\item Lo strand dell'allineamento
+	\item	Il nome della read allineata
+	\item Il numero di errori commessi nell'allineamento 
+	\item Il MEM vero e proprio
+	\item Le basi che costituiscono il MEM considerato
+\end{itemize}
+
+L'immagine seguente mostra un esempio di file nel nuovo formato mem.
 
 \begin{figure}[h!]
 	\centering

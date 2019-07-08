@@ -2,17 +2,17 @@
 
 \subsection{Descrizione generale}
 
-Il Rilevatore di Eventi di Alternative Splicing si occupa di rilevare tutti gli eventi indotti dalle read. Per fare questo, confronta gli introni noti (deducibili dal file gtf) con quelli \textit{novel} (deducibili dagli allineamenti in formato MEM); analizzando le differenze tra i due è possibile rilevare gli eventi di Alternative Splicing.
+Il Rilevatore di Eventi di Alternative Splicing si occupa di rilevare tutti gli eventi indotti dalle read. Per fare questo, confronta gli introni noti (deducibili dal file gtf) con quelli \textit{novel} (deducibili dagli allineamenti in formato mem); analizzando le differenze tra i due è possibile rilevare gli eventi di Alternative Splicing.
 
 Trovare gli introni noti è semplice, in quanto nel file gtf sono riportati tutti gli esoni con le relative posizioni di inizio e fine: gli introni sono quindi rappresentati dalla porzione di genoma tra un esone e un altro. 
 
-La rilevazione degli introni novel è invece più complessa, e utilizza i MEMs generati dello Splice-Aware Aligner. Preso un generico allineamento, esso può essere rappresentato da uno o più MEMs. Nel secondo caso viene calcolata la distanza tra di essi sia sul genoma che sul testo degli esoni; si considerano introni tutte le porzioni del genoma dove questi due valori differiscono.
+La rilevazione degli introni novel è invece più complessa, e utilizza i MEM generati dello Splice-Aware Aligner. Preso un generico allineamento, esso può essere rappresentato da uno o più MEM. Nel secondo caso viene calcolata la distanza tra di essi sia sul genoma che sul testo degli esoni; si considerano introni tutte le porzioni del genoma dove questi due valori differiscono.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth, height=7cm]{images/pattern.png}
   \caption{Fase di confronto degli introni}
-  \label{fig:Summary}
+  \label{fig:Summary1}
 \end{figure}
 
 Viene poi eseguita una fase di riconciliazione (che permette di migliorare la qualità degli introni rilevati) e vengono filtrati quelli non supportati da un numero sufficiente di read.
@@ -25,7 +25,7 @@ La seguente immagine riassume la procedura:
 	\centering
 	\includegraphics[width=\linewidth, height=5cm]{images/riassuntorilevazione.png}
   \caption{Riassunto della fase di rilevazione}
-  \label{fig:Summary}
+  \label{fig:Summary2}
 \end{figure}
 
 \newpage
@@ -40,7 +40,7 @@ Gli eventi di Alternative Splicing così rilevati saranno poi riportati in un fi
 
 \subsection{Merge degli introni dedotti dai due sample}
 
-Come già detto in precedenza, i MEMs generati dallo Splice-Aware Aligner vengono utilizzati al fine di rilevare nuovi introni; ovviamente è necessario estendere questa procedura alle read paired-end. Si tratta in sostanza di fare una merge degli introni dedotti da ciascuno dei due file.
+Come già detto in precedenza, i MEM generati dallo Splice-Aware Aligner vengono utilizzati al fine di rilevare nuovi introni; ovviamente è necessario estendere questa procedura alle read paired-end. Si tratta in sostanza di fare una merge degli introni dedotti da ciascuno dei due file.
 
 Il seguente frammento di codice mostra la procedura:
 
