@@ -67,7 +67,7 @@ Visto che un allineamento può essere rappresentato da più di un MEM, non è po
 Queste due operazioni permettono di calcolare l'IDMP in maniera efficace. Innanzitutto si prende l'ultimo MEM relativo all'allineamento della prima read, e si utilizza l'operazione di Rank per trovare l'esone di appartenenza. A questo punto, si utilizza l'operazione di Rank per trovare la posizione iniziale dell'esone. L'offset sarà quindi dato dalla differenza tra il MEM e la posizione iniziale dell'esone. Basta quindi aggiungere questo offset alla posizione iniziale per trovare la fine del primo allineamento.
 
 % Sistemare, spiegare come viene calcolato.
-L'inizio del secondo allineamento è noto. A questo punto basterà sottrarre ad esso la fine di quello precedente, in modo da ottenere l'IDMP.
+L'inizio del secondo allineamento viene calcolato facendo prima la Rank sul primo MEM, e utilizzando la Select sul risultato ottenuto. A questo punto basterà sottrarre ad esso la fine di quello precedente, in modo da ottenere l'IDMP.
 
 Il seguente frammento di codice riassume la procedura:
 
@@ -122,6 +122,6 @@ Questi approcci hanno due problemi:
 	\item Non tutti gli allineatori hanno la stessa nozione di "distanza tra read" (ad esempio alcuni considerano anche tutta la prima read e tutta la seconda nel conteggio) e, visto che utilizzano politiche di allineamento differenti, i valori ottenuti possono differire.
 \end{itemize}
 
-Per provare a risolvere questi problemi, abbiamo provato ad introdurre il TIDMP, una statistica calcolata ad-hoc da ASGAL. Come detto sopra, per il momento viene calcolata solo nel caso di esoni consecutivi, andando quindi a perdere informazioni negli altri casi. Inoltre, non siamo ancora sicuri dell'effettiva utilità della stessa. Questo aspetto sarà da approfondire in futuro.
+Per provare a risolvere questi problemi, abbiamo provato ad introdurre il TIDMP, una statistica calcolata ad-hoc da ASGAL. Come detto sopra, per il momento viene calcolata solo nel caso di esoni consecutivi, andando quindi a perdere informazioni negli altri casi. Inoltre, non siamo ancora sicuri dell'effettiva utilità della stessa. Questo aspetto dovrà essere approfondito in futuro.
 
 \newpage
