@@ -1,2 +1,6 @@
 \section{Conclusioni}
-ASGAL è ora in grado di supportare le read paired-end, rilevando correttamente gli eventi di Alternative Splicing e salvando gli allineamenti rispettando lo standard del formato SAM. Rimane da investigare l'utilizzo di IDMP e TIDMP per aumentare l'efficacia della rilevazione.
+In questo documento sono state analizzate le modifiche apportate ad ASGAL, un tool per l'identificazione di eventi di Alternative Splicing espressi in un campione di RNA-Seq a partire da un genoma di riferimento e dall'annotazione di un gene, per introdurre il supporto alle read paired-end.
+
+Sono state introdotte modifiche in ciascuno dei componenti di ASGAL: l' Allineatore Splice-Aware è ora in grado di allineare read paired-end e di farlo velocemente utilizzando le fragment library types; il Formattatore SAM produce file SAM coerenti con lo standard per read paired-end e mostra diverse statistiche sull'allineamento; il Rilevatore di eventi di Alternative Splicing è ora in grado di rilevare più eventi rispetto alla versione single-end.
+
+Rimangono da investigare i possibili utilizzi di IDMP e TIDMP, due statistiche calcolate da ASGAL che rappresentano rispettivamente la distanza tra due read sul genoma e sui trascritti, che potrebbero portare ad un ulteriore incremento della capacità di rilevazione degli eventi di Alternative Splicing.

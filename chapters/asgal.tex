@@ -1,11 +1,11 @@
 \section{Introduzione}
 
 \subsection{ASGAL}
-ASGAL (Alternative Splicing Graph ALigner) \cite{ASGAL} è un tool sviluppato dall'Algolab per l'identificazione di eventi di Alternative Splicing espressi in un campione di RNA-seq a partire da un genoma di riferimento e dall'annotazione di un gene. ASGAL si compone di quattro step:
+ASGAL (Alternative Splicing Graph ALigner) \cite{ASGAL} è un tool sviluppato dall'Algolab per l'identificazione di eventi di Alternative Splicing espressi in un campione di RNA-Seq a partire da un genoma di riferimento e dall'annotazione di un gene. ASGAL si compone di quattro step:
 
 \begin{enumerate}
 	\item \textbf{Costruzione dello splicing graph}: a partire dall'annotazione di un gene e dalla genomica di riferimento, ASGAL costruisce uno splicing graph, ovvero una struttura a grafo che rappresenta tutti i trascritti noti del gene in input. Viene inoltre prodotta una linearizzazione dello splicing graph, che sarà utilizzata in fase di allineamento.
-	\item \textbf{Allineamento Splice-Aware}: utilizzando gli algoritmi in \cite{MEM} e \cite{MEMAlgo} ASGAL allinea le read di RNA-Seq con la linearizzazione dello splicing graph del gene in input. L'allineamento è Splice-Aware in quanto è necessario tenere traccia della posizione di esoni ed introni per un corretto allineamento.
+	\item \textbf{Allineamento Splice-Aware}: utilizzando gli algoritmi in \cite{MEM} e \cite{MEMAlgo} ASGAL allinea le RNA-Seq reads con la linearizzazione dello splicing graph del gene in input. L'allineamento è Splice-Aware in quanto è necessario tenere traccia della posizione di esoni ed introni per un corretto allineamento.
 	\item \textbf{Computazione degli allineamenti Spliced (opzionale)}: gli allineamenti prodotti dall'Allineatore Splice-Aware vengono convertiti nel formato SAM, per permetterne l'elaborazione con strumenti standard.
 	\item \textbf{Rilevazione degli eventi di Alternative Splicing}: gli allineamenti prodotti dall'Allineatore Splice-Aware sono analizzati per rilevare gli eventi di Alternative Splicing indotti dalle read del campione. Gli eventi rilevati sono visualizzati in un file csv, che include diverse informazioni su ciascun evento rilevato.
 \end{enumerate}

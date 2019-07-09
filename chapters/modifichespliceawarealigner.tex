@@ -15,20 +15,28 @@ Questa prima fase non utilizza le read paired-end, e non è stata quindi modific
   \label{fig:PairedEndReads}
 \end{figure}
 
-Il secondo compito di ASGAL è quello di allineare le read paired-end con la linearizzazione appena ottenuta. Per fare questo, utilizza il concetto di MEM (Maximum Exact Matching), ovvero di una tripla così costituita:
+Il secondo compito di ASGAL è quello di allineare le read paired-end con la linearizzazione appena ottenuta. Per fare questo, utilizza il concetto di MEM (Maximum Exact Matches), ovvero di una tripla così costituita:
 \begin{enumerate}
 	\item Posizione iniziale nel genoma
 	\item Posizione iniziale nella read
 	\item Lunghezza della parte in comune
 \end{enumerate}
 	
-%Come si può intuire dal nome, i MEM utilizzano il concetto di pattern matching esatto, rispetto  ai generici algoritmi di allineamento che ammettono dei %mismatch (o per meglio dire, degli \textit{indel}). 
+Come si può intuire dal nome, i MEM utilizzano il concetto di pattern matching esatto, rispetto  ai generici algoritmi di allineamento che ammettono dei mismatch o degli indel. 
 
 Il nuovo formato paired-end è stato qui utilizzato per velocizzare il processo di allineamento ove possibile; si è invece ritenuto inutile utilizzarle per migliorare la qualità dell'allineamento, in quanto non ammettendo indel non rimangono casi da disambiguare.
 
-Il risultato dell'allineamento sarà restituito, per comodità, nel formato proprietario \textit{.mem}, che potrà eventualmente essere convertito in SAM (il formato standard per gli allineamenti) negli step successivi.
-
 \newpage
+
+Il risultato dell'allineamento sarà restituito, per comodità, nel formato \textit{.mem} così composto:
+
+\begin{itemize}
+	\item Lo \textbf{strand} dell'allineamento
+	\item	Il \textbf{nome della read} allineata
+	\item Il \textbf{numero di errori} commessi nell'allineamento 
+	\item Il \textbf{MEM} vero e proprio, eventualmente anche più di uno
+	\item La \textbf{sottostringa della read} che costituisce il MEM considerato
+\end{itemize}
 
 \subsection{Allineamento di entrambe le read}
 %Il primo problema da affrontare è ovviamente il fatto che sia ora necessario allineare due read per ciclo e non una; fortunatamente si tratta solo di iterare il processo di allineamento su una coppia di read ad ogni ciclo, anziché su read singola. Verranno quindi generati due file contenti MEM anziché uno. Sarà poi compito della Formattazione SAM "fondere" i due file MEM per ottenere un SAM Completo.
@@ -38,7 +46,7 @@ Mentre in un generico allineatore questo avrebbe creato non pochi problemi, in A
 
 Resta comunque fondamentale riuscire a collegare i MEM delle due estremità tra di loro. Per fare questo, abbiamo deciso di utilizzare due file .mem anziché uno, con la seguente proprietà: una stessa riga nel primo file e nel secondo corrispondono alla stessa read. Questo risolve il problema del collegamento tra MEM provenienti dalla stessa read, e indirettamente anche quello della distanza tra le estremità (dati i MEM è possibile calcolare la distanza).
 
-Non è però detto che entrambe le estremità abbiano lo stesso numero di MEM ad esse associate (ovvero lo stesso numero di allineamenti che le coinvolgono) e nemmeno che li abbiano. E' quindi necessario introdurre nuovi tipi di MEM per questi casi.
+Non è però detto che entrambe le estremità siano coinvolte nello stesso numero di allineamenti (potrebbero addirittura non esserlo affatto). E' quindi necessario introdurre nuovi tipi di MEM per questi casi.
 
 
 \subsection{Introduzione di read unmapped e "placeholder" nel formato mem}
@@ -46,22 +54,9 @@ Nei file mem ottenuti dallo Splice-Aware Aligner vengono ora visuallizati due nu
 
 Il secondo caso è più complesso e rappresenta un insieme di read fasulle utilizzate solo come padding per avere due file MEM della stessa lunghezza: questo facilita enormemente l'elaborazione nello step successivo (la formattazione SAM). Come detto in precedenza quando si lavora con read paired-end è sempre necessario lavorare a coppie, ma non sempre ad uno stesso pair è associato lo stesso numero di allineamenti secondari: è qui che entrano in gioco i "placeholder". 
 
-La loro implementazione è banale: si tengono due contatori (che rappresentano rispettivamente il numero di allineamenti relativi alla prima read e quelli relativi alla seconda read), si ottengono separatamente gli allineamenti relativi a ciascuna delle due read, e si controllano i contatori. Si prende il minore dei due e si aggiungono tanti placeholder quanto bastano per rendere uguali i contatori.
+I "placeholder" sono stati implementati in questo modo: si tengono due contatori (che rappresentano rispettivamente il numero di allineamenti relativi alla prima read e quelli relativi alla seconda read), si ottengono separatamente gli allineamenti relativi a ciascuna delle due read, e si controllano i contatori. Si prende il minore dei due e si aggiungono tanti placeholder quanto bastano per rendere uguali i contatori.
 
 E' stato inoltre necessario introdurre un nuovo campo nel formato \textit{.mem}, che permette di distinguere il tipo di MEM preso in esame: ad esempio trovando come primo valore la stringa "MAPPED", si capisce che il MEM preso in esame è relativo ad una read che è stata mappata correttamente; ovviamente vale lo stesso ragionamento con le stringhe "UNMAPPED" e "PLACEHOLDER".
-
-\newpage
-
-Il nuovo formato mem è così composto:
-
-\begin{itemize}
-	\item Il \textbf{tipo} di MEM (Mapped, Unmapped o Placeholder)
-	\item Lo \textbf{strand} dell'allineamento
-	\item	Il \textbf{nome della read} allineata
-	\item Il \textbf{numero di errori} commessi nell'allineamento 
-	\item Il \textbf{MEM} vero e proprio
-	\item La \textbf{sottostringa della read} che costituisce il MEM considerato
-\end{itemize}
 
 L'immagine seguente mostra un esempio di file nel nuovo formato mem.
 

@@ -52,15 +52,13 @@ Il seguente frammento di codice mostra la procedura:
 
 \newpage
 
-\section{Sviluppi futuri}
-
 \subsection{IDMP (Inner Distance between Mate Pairs)}
 Considerando una coppia di read, si definisce IDMP (Inner Distance between Mate Pairs) la distanza sul genoma di riferimento tra l'ultima base della prima read e la prima della seconda. Questa informazione viene generalmente fornita dall'ente che ha effettuato il sequenziamento, e può essere confrontata con l'IDMP rilevato durante l'allineamento per rilevare nuovi eventi di Alternative Splicing.
 
 Visto che un allineamento può essere rappresentato da più di un MEM, non è possibile semplicemente aggiungere la lunghezza dell'allineamento alla sua posizione iniziale. Prima di poter calcolare l'IDMP è quindi necessario introdurre il concetto di BitVector, ovvero una sequenza di bit che rappresenta la posizione degli esoni nello Splicing Graph. Un BitVector è dotato di due operazioni, entrambe svolte in tempo costante:
 
 \begin{itemize}
-	\item Rank: data una posizione, ritorna l'esone di provenienza
+	\item Rank: data una posizione, ritorna l'identificativo dell'esone di provenienza
 	\item Select: dato un esone, ritorna la posizione di partenza 
 \end{itemize}
 
@@ -107,6 +105,8 @@ Il seguente frammento di codice mostra come calcolare il TIDMP:
 Il caso di esoni non consecutivi presenta diverse criticità, e per il momento non è stato calcolato.
 
 \newpage
+
+\section{Sviluppi futuri}
 
 \subsection{Incremento della qualità degli allineamenti usando IDMP e TIDMP}
 
