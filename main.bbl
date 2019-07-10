@@ -36,4 +36,19 @@ E.~M. Rockenstein, L.~McConlogue, H.~Tan, M.~Power, E.~Masliah, and L.~Mucke,
   disease,'' {\em Journal of Biological Chemistry}, vol.~270, no.~47,
   pp.~28257--28267, 1995.
 
+\bibitem{thorvaldsdottir2013integrative}
+H.~Thorvaldsd{\'o}ttir, J.~T. Robinson, and J.~P. Mesirov, ``Integrative
+  genomics viewer (igv): high-performance genomics data visualization and
+  exploration,'' {\em Briefings in bioinformatics}, vol.~14, no.~2,
+  pp.~178--192, 2013.
+
+\bibitem{li2013aligning}
+H.~Li, ``Aligning sequence reads, clone sequences and assembly contigs with
+  bwa-mem,'' {\em arXiv preprint arXiv:1303.3997}, 2013.
+
+\bibitem{dobin2013star}
+A.~Dobin, C.~A. Davis, F.~Schlesinger, J.~Drenkow, C.~Zaleski, S.~Jha,
+  P.~Batut, M.~Chaisson, and T.~R. Gingeras, ``Star: ultrafast universal
+  rna-seq aligner,'' {\em Bioinformatics}, vol.~29, no.~1, pp.~15--21, 2013.
+
 \end{thebibliography}

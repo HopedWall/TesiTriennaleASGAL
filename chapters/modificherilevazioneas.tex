@@ -183,7 +183,7 @@ Il caso di esoni non consecutivi presenta diverse criticità, e per il momento n
 
 \subsection{Incremento della qualità degli allineamenti usando IDMP e TIDMP}
 
-Innanzitutto, è fondamentale ricordare che la distanza tra le due read di un pair viene fornita dall'ente che ha effettuato il sequenziamento, ed è la stessa per tutta la libreria. Qualora non fosse disponibile, è possibile calcolarla effettuando un allineamento con allineatori come BWA o STAR, e lanciando un analisi sul BAM ottenuto con SAMTools (ovviamente lo stesso risultato si otterrebbe usando ASGAL come allineatore, ma non avrebbe senso usarlo come parametro).
+Innanzitutto, è fondamentale ricordare che la distanza tra le due read di un pair viene fornita dall'ente che ha effettuato il sequenziamento, ed è la stessa per tutta la libreria. Qualora non fosse disponibile, è possibile calcolarla effettuando un allineamento con allineatori come BWA\cite{li2013aligning} o STAR\cite{dobin2013star}, e lanciando un analisi sul BAM ottenuto con SAMTools (ovviamente lo stesso risultato si otterrebbe usando ASGAL come allineatore, ma non avrebbe senso usarlo come parametro).
 
 Questo valore potrebbe essere usato come riferimento per effettuare gli allineamenti in ASGAL. Quando un allineamento ha un IDMP (calcolato da ASGAL) troppo diverso da quello fornito in input, l'allineamento potrebbe essere scartato. Un'altra possibilità potrebbe essere quella di provare a ri-allineare cercando un IDMP più basso. 
 
