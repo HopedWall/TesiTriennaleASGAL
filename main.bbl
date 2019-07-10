@@ -1,0 +1,39 @@
+\begin{thebibliography}{1}
+
+\bibitem{denti2018asgal}
+L.~Denti, R.~Rizzi, S.~Beretta, G.~Della~Vedova, M.~Previtali, and
+  P.~Bonizzoni, ``Asgal: aligning rna-seq data to a splicing graph to detect
+  novel alternative splicing events,'' {\em BMC bioinformatics}, vol.~19,
+  no.~1, p.~444, 2018.
+
+\bibitem{beretta2017mapping}
+S.~Beretta, P.~Bonizzoni, L.~Denti, M.~Previtali, and R.~Rizzi, ``Mapping
+  rna-seq data to a transcript graph via approximate pattern matching to a
+  hypertext,'' in {\em International Conference on Algorithms for Computational
+  Biology}, pp.~49--61, Springer, 2017.
+
+\bibitem{ohlebusch2010computing}
+E.~Ohlebusch, S.~Gog, and A.~K{\"u}gel, ``Computing matching statistics and
+  maximal exact matches on compressed full-text indexes,'' in {\em
+  International Symposium on String Processing and Information Retrieval},
+  pp.~347--358, Springer, 2010.
+
+\bibitem{wang2008alternative}
+E.~T. Wang, R.~Sandberg, S.~Luo, I.~Khrebtukova, L.~Zhang, C.~Mayr, S.~F.
+  Kingsmore, G.~P. Schroth, and C.~B. Burge, ``Alternative isoform regulation
+  in human tissue transcriptomes,'' {\em Nature}, vol.~456, no.~7221, p.~470,
+  2008.
+
+\bibitem{tazi2009alternative}
+J.~Tazi, N.~Bakkour, and S.~Stamm, ``Alternative splicing and disease,'' {\em
+  Biochimica et Biophysica Acta (BBA)-Molecular Basis of Disease}, vol.~1792,
+  no.~1, pp.~14--26, 2009.
+
+\bibitem{rockenstein1995levels}
+E.~M. Rockenstein, L.~McConlogue, H.~Tan, M.~Power, E.~Masliah, and L.~Mucke,
+  ``Levels and alternative splicing of amyloid $\beta$ protein precursor (app)
+  transcripts in brains of app transgenic mice and humans with alzheimer's
+  disease,'' {\em Journal of Biological Chemistry}, vol.~270, no.~47,
+  pp.~28257--28267, 1995.
+
+\end{thebibliography}

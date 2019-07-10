@@ -1,9 +1,9 @@
 \section{Conversione in formato SAM}
 
 \subsection{Descrizione generale}
-Come già detto, gli allineamenti ottenuti dallo Splice-Aware aligner sono in un formato non standard chiamato MEM, che contiene solo informazioni relative ai MEMs ottenuti in fase di allineamento. L'obiettivo di questa seconda parte è quello di convertire i due file MEM in un singolo file SAM (Sequence Alignment Map), il formato standard per memorizzare gli allineamenti.
+Come già detto, gli allineamenti ottenuti dallo Splice-Aware aligner sono in un formato non standard chiamato MEM, che contiene solo informazioni relative ai MEMs ottenuti in fase di allineamento. L'obiettivo di questa seconda parte è quello di convertire i due file MEM in un singolo file SAM\footnote{\url{http://samtools.github.io/hts-specs/SAMv1.pdf}} (Sequence Alignment Map), il formato standard per memorizzare gli allineamenti.
 
-Il formato SAM (Sequence Alignment Map) è composto da 11 campi:
+Il formato SAM è composto da 11 campi:
 
 \begin{enumerate}
 	\item \textbf{QNAME}: Il nome identificativo dell'allineamento

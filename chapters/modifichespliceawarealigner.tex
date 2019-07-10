@@ -2,7 +2,7 @@
 
 \subsection{Descrizione generale}
 
-Il primo compito di ASGAL è quello di generare lo Splicing Graph a partire dal genoma di riferimento (in formato fasta) e dalla sua annotazione (in formato gtf). Uno splicing graph è un grafo orientato in cui i nodi rappresentano gli esoni, e gli archi collegano due esoni che compaiono uno dopo l'altro in un trascritto; utilizzando la chiusura transitiva ogni esone viene poi collegato a tutti i suoi successori.
+Il primo compito di ASGAL è quello di generare lo Splicing Graph a partire dal genoma di riferimento (in formato FASTA\footnote{\url{https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp}}) e dalla sua annotazione (in formato GTF\footnote{\url{https://www.ensembl.org/info/website/upload/gff.html}}). Uno splicing graph è un grafo orientato in cui i nodi rappresentano gli esoni, e gli archi collegano due esoni che compaiono uno dopo l'altro in un trascritto; utilizzando la chiusura transitiva ogni esone viene poi collegato a tutti i suoi successori.
 
 Per permettere un allineamento tra due stringhe viene generata una linearizzazione dello Splicing Graph, ottenuta semplicemente concatenandone i nodi e utilizzando un carattere speciale come delimitatore tra un nodo e un altro. 
 
@@ -70,7 +70,7 @@ L'immagine seguente mostra un esempio di file nel nuovo formato mem.
 \newpage
 
 \subsection{Supporto alle fragment library types}
-Ci sono diversi protocolli per la preparazione di librerie paired-end, che portano a read con caratteristiche diverse. Le \textbf{fragment library types} permettono di descrivere queste caratteristiche in modo sintetico. Le caratteristiche che possono essere descritte sono:
+Ci sono diversi protocolli per la preparazione di librerie paired-end, che portano a read con caratteristiche diverse. Le \textbf{fragment library types}\footnote{\url{https://salmon.readthedocs.io/en/latest/}} permettono di descrivere queste caratteristiche in modo sintetico. Le caratteristiche che possono essere descritte sono:
 \begin{itemize}
 	\item \textbf{Orientamento relativo di una read rispetto all'altra}: può essere inward (I) o outward (O)
 	\item \textbf{Se è noto o meno lo strand di appartenenza delle due read}:  può essere stranded (S) o unstranded (U)
