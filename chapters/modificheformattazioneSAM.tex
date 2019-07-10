@@ -77,9 +77,36 @@ Seguendo l'esempio di altri allineatori (come ad esempio STAR), è stato deciso 
 
 Questi valori sono visualizzati nel file \textit{.alignsinfo.txt}. Anche se non hanno finalità particolari per la rilevazione di eventi di Alternative Splicing, essi forniscono uno strumento per valutare la qualità degli allineamenti effettuati da ASGAL.
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[height=5.5cm,width=8cm]{images/aligninfo.png}
-  \caption{Esempio di file \textit{.alignsinfo.txt}}
-  \label{fig:AlignsInfo}
+\makeatletter
+\newenvironment{CenteredBox}{% 
+\begin{Sbox}}{% Save the content in a box
+\end{Sbox}\centerline{\parbox{\wd\@Sbox}{\TheSbox}}}% And output it centered
+\makeatother
+
+\begin{figure}[thp]
+\begin{CenteredBox}
+  \begin{lstlisting}
+Count mapped1: 1281/1313
+Count mapped2: 1291/1295
+Count unmapped reads1: 32
+Count unmapped reads2: 4
+Count placeholders1: 69
+Count placeholders2: 87
+Count mapped pairs: 1194
+Count primary alignments: 958
+Count secondary alignments: 236
+Count one-side alignments: 184
+Average idmp: 253.75795644891122
+Average tidmp: 141.38358458961474
+Average tlen: 915.1889352818372
+  \end{lstlisting}
+\end{CenteredBox}
+\caption{Esempio di file \textit{.alignsinfo.txt}}
 \end{figure}
+
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[height=5.5cm,width=8cm]{images/aligninfo.png}
+%  \caption{Esempio di file \textit{.alignsinfo.txt}}
+%  \label{fig:AlignsInfo}
+%\end{figure}

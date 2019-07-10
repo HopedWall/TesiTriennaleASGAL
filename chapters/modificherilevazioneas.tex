@@ -44,11 +44,24 @@ Come già detto in precedenza, i MEM generati dallo Splice-Aware Aligner vengono
 
 Il seguente frammento di codice mostra la procedura:
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\linewidth]{images/mergeIntrons.png}
-  \label{fig:MergeIntrons}
-\end{figure}
+\begin{lstlisting}[language=Python]
+def mergeIntrons(introns1, introns2):
+    introns = {}
+    for (p1,p2),w in introns1.items():
+            introns[(p1,p2)] = w
+    for (p1,p2),w in introns2.items():
+            if (p1,p2) not in introns.keys():
+                introns[(p1,p2)] = w
+            else:
+                introns[(p1,p2)] += w
+    return introns
+\end{lstlisting}
+
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=\linewidth]{images/mergeIntrons.png}
+%  \label{fig:MergeIntrons}
+%\end{figure}
 
 \newpage
 
@@ -69,11 +82,34 @@ L'inizio del secondo allineamento viene calcolato facendo prima la Rank sul prim
 
 Il seguente frammento di codice riassume la procedura:
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\linewidth, height=9.5cm]{images/getIDMP.png}
-  \label{fig:GetIDMP}
-\end{figure}
+\begin{lstlisting}[language=Python]
+def getEnd(mem, bv, exPos):
+    exonN = bv.rank(mem[0])
+
+    # get starting position (on reference)
+    exonStartingPos = exPos[exonN-1][0]
+
+    # get offset from bitvector
+    exonStartingPos_onT = bv.select(exonN)
+    offset = mem[0] - exonStartingPos_onT + 1;
+
+    # find the end
+    end = exonStartingPos + offset + mem[2]
+    return end
+def getIdmp(start2, mems1, bv, exPos):
+    lastMem1 = mems1[-1]
+
+    # get ending position (on reference)
+    end1 = getEnd(lastMem1, bv, exPos)
+
+    return start2 - end1
+\end{lstlisting}
+
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=\linewidth, height=9.5cm]{images/getIDMP.png}
+%  \label{fig:GetIDMP}
+%\end{figure}
 
 \newpage
 
@@ -88,19 +124,56 @@ Se i due MEM non si trovano sullo stesso esone, potrebbero essere su due esoni c
 
 Il seguente frammento di codice mostra come calcolare il TIDMP:
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\linewidth, height=9.5cm]{images/gettIDMP1.png}
-  \label{fig:GettIDMP1}
-\end{figure}
+\begin{lstlisting}[language=Python]
+def getTranscriptIdmp(transcripts, mems1, mems2, bv, exPos):
+    tIdmp = 0
 
-\newpage
+    # get last mem from read1 and first mem from read2
+    m1 = mems1[-1]
+    m2 = mems2[0]
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\linewidth, height=9.5cm]{images/gettIDMP2.png}
-  \label{fig:GettIDMP2}
-\end{figure}
+    # find exon for m1 and m2
+    id1 = bv.rank(m1[0]) - 1
+    id2 = bv.rank(m2[0]) - 1
+
+    # find positions on bitvector
+    start1 = m1[0]
+    start2 = m2[0]
+    len1 = m1[2]
+    len2 = m2[2]
+
+    if id1 == id2: # m1 and m2 are on same exon
+        distance = start2 - (start1 + len1)
+        tIdmp += distance
+        
+    else: # m1 and m2 are not on same exon
+        consecutiveExons = False
+
+        # check in all transcripts if the exons are consecutive
+        # NOTE: two exons are consecutive if they appear 
+        # next to each other in a transcript
+        # (an exon is represented as (startPosReference, endPosReference))
+        for _,exons in transcripts.items():
+            start1Reference = getStart(m1,bv,exPos)
+            start2Reference = getStart(m2,bv,exPos)
+            end1Reference = getEnd(m1,bv,exPos)
+            end2Reference = getEnd(m2,bv,exPos)
+            for (s1, e1), (s2, e2) in pairwise(exons):
+                if s1 == start1Reference and e1 == end1Reference
+                    and s2 == start2Reference and e2 == end2Reference:
+                    consecutiveExons = True
+                    exon1EndingPosBv = bv.select(id1+1)
+                    exon2startingPosBv = bv.select(id2)
+                    distance = exon1EndingPosBv - (start1 + len1) 
+                               + (start2 - exon2startingPosBv) - 1
+                    tIdmp += distance
+                    break
+
+        if not consecutiveExons:
+            pass
+
+    return tIdmp
+\end{lstlisting}
 
 Il caso di esoni non consecutivi presenta diverse criticità, e per il momento non è stato calcolato.
 
