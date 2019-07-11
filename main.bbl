@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{denti2018asgal}
 L.~Denti, R.~Rizzi, S.~Beretta, G.~Della~Vedova, M.~Previtali, and
@@ -50,5 +50,11 @@ H.~Li, ``Aligning sequence reads, clone sequences and assembly contigs with
 A.~Dobin, C.~A. Davis, F.~Schlesinger, J.~Drenkow, C.~Zaleski, S.~Jha,
   P.~Batut, M.~Chaisson, and T.~R. Gingeras, ``Star: ultrafast universal
   rna-seq aligner,'' {\em Bioinformatics}, vol.~29, no.~1, pp.~15--21, 2013.
+
+\bibitem{griebel2012modelling}
+T.~Griebel, B.~Zacher, P.~Ribeca, E.~Raineri, V.~Lacroix, R.~Guig{\'o}, and
+  M.~Sammeth, ``Modelling and simulating generic rna-seq experiments with the
+  flux simulator,'' {\em Nucleic acids research}, vol.~40, no.~20,
+  pp.~10073--10083, 2012.
 
 \end{thebibliography}

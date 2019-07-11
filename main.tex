@@ -24,75 +24,31 @@
   
   \include{./chapters/dedica}
   
+  \include{./chapters/abstract}
+ 
+	% Tavola dei contenuti
+  \tableofcontents
   \newpage
     
-   % Abstract 
-   \renewcommand{\abstractname}{Abstract - Italiano}
-   \begin{abstract}
-L'Alternative Splicing è un meccanismo attraverso il quale diverse isoforme proteiche sono generate a partire da uno stesso gene. Si stima che oltre il 75\% dei geni umani utilizzi l' Alternative Splicing, e una piena comprensione di questo meccanismo potrebbe aiutare a far luce su diversi fenomeni biologici non ancora del tutto chiari, oltre che a migliorare la capacità di rilevazione di diverse patologie di natura genetica. Con l'avvento delle tecnologie NGS (Next Generation Sequencing), l'accesso a grandi quantità di informazioni di natura biologica è diventato sempre più facile e conveniente: in questo contesto l'informatica potrebbe giocare un ruolo fondamentale nello studio dell'Alternative Splicing. Purtroppo al momento non esistono molti software in grado di rilevare eventi di Alternative Splicing a partire da read paired-end, un nuovo tipo di read ottenute da sequenziatori NGS, che potrebbero portare ad una maggiore precisione in fase di rilevazione. Si è quindi deciso di estendere ASGAL, un software sviluppato dall'Algolab in grado di rilevare eventi di Alternative Splicing, per supportare le read paired-end. In questo documento saranno evidenziate le principali modifiche apportate ad ASGAL, ponendo l'attenzione sulle differenze tra il formato single-end e quello paired-end. Sarà poi presentato un esempio di funzionamento, oltre che ad alcuni possibili sviluppi futuri.
-   \end{abstract}
-   
-	\renewcommand{\abstractname}{Abstract - English}   
-   \begin{abstract}
-Alternative Splicing is a mechanism by which different protein isoforms are produced starting from the same gene. It is estimated that over 75\% of human genes use Alternative Splicing, and a full comprehension of such mechanism could help shed light on different biological phenomena which are not fully understood yet, and also to improve the ability to detect genetic diseases. With the advent of NGS (Next Generation Sequencing) technologies, access to biological data has become easier and cheaper: in this context computer science could play a key role in the study of Alternative Splicing. Unfortunately, at the moment there are not many softwares capable of detecting Alternative Splicing events starting from paired-end reads, a new format of reads obtained by NGS sequencers, which could be used to increase precision during detection. We have decided to extend ASGAL, a software developed by Algolab capable of detecting Alternative Splicing events, to support paired-end reads. In this paper the main changes applied to ASGAL will be highlited, focusing our attention on differences between single-end and paired-end formats. An example of operation will be presented, as well as some future prospects.
-   \end{abstract}
-    
-   \newpage
+  \pagenumbering{arabic}
+  \setlength{\parskip}{0.5em}
 
-		% Tavola dei contenuti
-    \tableofcontents
-    \newpage
-    
-    \pagenumbering{arabic}
-    \setlength{\parskip}{0.5em}
-
-    	\include{./chapters/asgal}
-    	\include{./chapters/alternativesplicing}
-    	%\include{./chapters/pairedendreads} incluso sopra
+  \include{./chapters/asgal}
+  	\include{./chapters/alternativesplicing}
+ %\include{./chapters/pairedendreads} incluso sopra
     	  
-    	\include{./chapters/modifichespliceawarealigner}
-    	\include{./chapters/modificheformattazioneSAM}
-    	\include{./chapters/modificherilevazioneas}
+  \include{./chapters/modifichespliceawarealigner}
+  \include{./chapters/modificheformattazioneSAM}
+  \include{./chapters/modificherilevazioneas}
     	
-    	\include{./chapters/esempiofunzionamento}
+  \include{./chapters/esempiofunzionamento}
     	
-    	\include{./chapters/competenzeacquisite}
+  \include{./chapters/competenzeacquisite}
     	
-		\include{./chapters/conclusioni}
+  \include{./chapters/conclusioni}
 		
-		\include{./chapters/bibliografia}
+	\include{./chapters/bibliografia}
 		
-%		\begin{thebibliography}{9}
-%
-%			\bibitem{ASGAL}
-%			Denti L, Rizzi R, Beretta S, Vedova GD, Previtali M, Bonizzoni P. ASGAL: aligning RNA-Seq data to a splicing graph to detect novel alternative splicing events. BMC Bioinformatics. 2018;19(1):444. Published 2018 Nov 20. doi:10.1186/s12859-018-2436-3
-%			
-%			\bibitem{MEM}
-% Beretta S, Bonizzoni P, Denti L, Previtali M, Rizzi R.Mapping rna-seq data to a transcript graph via approximate pattern matching to a hypertext. In: International Conference on Algorithms for Computational Biology. Berlin:Springer;2017. p.49–61. 
-% 
-% 			\bibitem{MEMAlgo}
-% Ohlebusch E, Gog S, Kügel A. Computing matching statistics and maximal exact match eson compressed full-text indexes.In:SPIRE.Berlin: Springer;2010. p.347–58. 
-%			
-%			\bibitem{ASExon}
-%				Wang ET,  Sandberg R,  Luo S,  Khrebtukova I,  Zhang L,  Mayr C,  Kingsmore SF,  Schroth GP,  Burge CB. Alternative isoform regulation in human tissue transcriptomes, Nature , 2008, vol. 462 (pg. 470-476)
-%				
-%			\bibitem{ASDiseases}
-%Tazi J, Bakkour N, Stamm S. Alternative splicing and disease. Biochim Biophys Acta. 2009;1792(1):14–26. doi:10.1016/j.bbadis.2008.09.017
-%							
-%			\bibitem{ASAlzheimer}
-%			Love JE, Hayden EJ, Rohn TT. Alternative Splicing in Alzheimer's Disease. J Parkinsons Dis Alzheimers Dis. 2015;2(2):6. doi:10.13188/2376-922X.1000010
-%			
-%			\bibitem{FLT}
-%			Salmon Documentation, Rob Patro, Geet Duggal, Mike Love, Rafael Irizarry and Carl Kingsford. Can be found at: \textit{https://salmon.readthedocs.io/en/latest/}
-%			
-%			\bibitem{SAM}
-%			Sequence Alignment/Map Format Specification, The SAM/BAM Format Specification Working Group, 14 May 2019. Can be found at: \textit{http://samtools.github.io/hts-specs/SAMv1.pdf}
-%			
-%			\bibitem{IGV}
-%			Thorvaldsdóttir H, Robinson JT, Mesirov JP. Integrative Genomics Viewer (IGV): high-performance genomics data visualization and exploration. Brief Bioinform. 2013;14(2):178–192. doi:10.1093/bib/bbs017
-%			
-%		\end{thebibliography}
-%		
-%		%\include{./chapters/appendice}
+ %\include{./chapters/appendice}
 
 \end{document}

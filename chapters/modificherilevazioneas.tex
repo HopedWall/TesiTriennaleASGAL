@@ -72,7 +72,7 @@ Visto che un allineamento può essere rappresentato da più di un MEM, non è po
 
 \begin{itemize}
 	\item Rank: data una posizione, ritorna l'identificativo dell'esone di provenienza
-	\item Select: dato un esone, ritorna la posizione di partenza 
+	\item Select: dato l'identificativo di un esone, ritorna la posizione di partenza 
 \end{itemize}
 
 Queste due operazioni permettono di calcolare l'IDMP in maniera efficace. Innanzitutto si prende l'ultimo MEM relativo all'allineamento della prima read, e si utilizza l'operazione di Rank per trovare l'esone di appartenenza. A questo punto, si utilizza l'operazione di Rank per trovare la posizione iniziale dell'esone. L'offset sarà quindi dato dalla differenza tra il MEM e la posizione iniziale dell'esone. Basta quindi aggiungere questo offset alla posizione iniziale per trovare la fine del primo allineamento.
