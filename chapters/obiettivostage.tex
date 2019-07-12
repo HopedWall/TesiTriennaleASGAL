@@ -1,0 +1,13 @@
+\subsection{Obiettivo stage e risultati ottenuti}
+Prima dell'inizio dello stage, ASGAL era in grado di gestire solo read single-end. L'obiettivo dello stage era quello di estendere ASGAL per supportare le read paired-end, ottenendo così una maggiore efficacia in fase di rilevazione.
+
+Per ottenere questo risultato, è stato necessario modificare ognuno degli step di ASGAL:
+\begin{itemize}
+	\item \textbf{Allineamento Splice-Aware}: è stata modificata la procedura di allineamento per allineare due read alla volta anziché una, sono stati introdotti nuovi tipi di MEM relativi alle read unmapped e "placeholder", è stato aggiunto il supporto alle Fragment Library Types per aumentare le prestazioni dell'allineamento
+	\item \textbf{Computazione degli eventi Spliced}: è stato modificato come alcuni campi (FLAG, RNEXT, PNEXT e TLEN) del formato SAM vengono computati, vengono ora visualizzate alcune statistiche sull'allineamento
+	\item \textbf{Rilevazione di eventi di Alternative Splicing}: la procedura di rilevazione è ora in grado di utilizzare gli introni dedotti da entrambe le read; sono state calcolate le statistiche IDMP e TIDMP che potrebbero, in futuro, essere usate per migliorare la qualità e quantità degli eventi rilevati.
+\end{itemize}
+
+ASGAL è ora in grado di allineare correttamente read paired-end con un genoma di riferimento, di salvare gli allineamenti ottenuti nel formato SAM (rispettando le specifiche per quanto riguarda read paired-end) e di visualizzare gli eventi di Alternative Splicing rilevati. 
+
+Nelle pagine successive saranno evidenziate nel dettaglio tutte le modifiche apportate ad ASGAL.
