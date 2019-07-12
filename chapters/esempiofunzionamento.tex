@@ -6,33 +6,33 @@ In questo esempio di funzionamento si utilizzerà il gene ENSG00000280145, situa
 
 Si è scelto di utilizzare Flux Simulator \cite{griebel2012modelling} per la generazione delle read paired-end. Il suo utilizzo non è particolarmente complicato, ma è necessario passare i diversi parametri attraverso un file con estensione .p. Il file utilizzato in questa simulazione è il seguente:
 
-\begin{figure}[thp]
-\begin{CenteredBox}
-  \begin{lstlisting}
-## File locations
-REF_FILE_NAME   annotation.gtf
-GEN_DIR         gen
-
-## Sequencing
-READ_NUMBER 2000
-READ_LENGTH 100
-PAIRED_END  YES
-FASTA   yes
-UNIQUE_IDS  YES
-
-POLYA_SCALE     NaN
-POLYA_SHAPE     NaN
-  \end{lstlisting}
-\end{CenteredBox}
-\caption{Il file contente i parametri di Flux Simulator}
-\end{figure}
-
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[height=7cm,width=10cm]{images/parameters2.png}
-%  \caption{Il file contente i parametri di Flux Simulator}
-%  \label{fig:Parameters}
+%\begin{figure}[thp]
+%\begin{CenteredBox}
+%  \begin{lstlisting}
+%## File locations
+%REF_FILE_NAME   annotation.gtf
+%GEN_DIR         gen
+%
+%## Sequencing
+%READ_NUMBER 2000
+%READ_LENGTH 100
+%PAIRED_END  YES
+%FASTA   yes
+%UNIQUE_IDS  YES
+%
+%POLYA_SCALE     NaN
+%POLYA_SHAPE     NaN
+%  \end{lstlisting}
+%\end{CenteredBox}
+%\caption{Il file contente i parametri di Flux Simulator}
 %\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{images/myParameters.png}
+  \caption{Il file contente i parametri di Flux Simulator}
+  \label{fig:Parameters}
+\end{figure}
 
 Vengono così generati due file contenti 2000 read di lunghezza 100, in formato fasta, che saranno dati in input ad ASGAL.
 
