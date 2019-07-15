@@ -1,7 +1,7 @@
 \section{Conversione in formato SAM}
 
 \subsection{Descrizione generale}
-Come già detto, gli allineamenti ottenuti dallo Splice-Aware aligner sono in un formato non standard chiamato MEM, che contiene solo informazioni relative ai MEMs ottenuti in fase di allineamento. L'obiettivo di questa seconda parte è quello di convertire i due file MEM in un singolo file SAM\footnote{\url{http://samtools.github.io/hts-specs/SAMv1.pdf}} (Sequence Alignment Map), il formato standard per memorizzare gli allineamenti.
+Come già detto, gli allineamenti ottenuti dallo Splice-Aware aligner sono in un formato non standard chiamato mem, che contiene solo informazioni relative ai MEM ottenuti in fase di allineamento. L'obiettivo di questa seconda parte è quello di convertire i due file mem in un singolo file SAM\footnote{\url{http://samtools.github.io/hts-specs/SAMv1.pdf}} (Sequence Alignment Map), il formato standard per memorizzare gli allineamenti.
 
 Il formato SAM è composto da 11 campi:
 
@@ -69,10 +69,9 @@ E' importante notare che, se questi campi sono settati correttamente, lasciando 
 Seguendo l'esempio di altri allineatori (come ad esempio STAR), è stato deciso di visualizzare alcune statistiche in fase di allineamento, quali:
 
 \begin{itemize}
-	\item Numero di read mappate, non mappate e "placeholder"
+	\item Numero di MEM mappati, non mappati e "placeholder"
 	\item Numero di allineamenti primari e secondari
-	\item IDMP medio
-	\item TIDMP medio
+	\item Numero di allineamenti in cui solo una delle due read è stata mappata
 \end{itemize}
 
 Questi valori sono visualizzati nel file \textit{.alignsinfo.txt}. Anche se non hanno finalità particolari per la rilevazione di eventi di Alternative Splicing, essi forniscono uno strumento per valutare la qualità degli allineamenti effettuati da ASGAL.
@@ -88,17 +87,14 @@ Questi valori sono visualizzati nel file \textit{.alignsinfo.txt}. Anche se non 
   \begin{lstlisting}
 Count mapped1: 1281/1313
 Count mapped2: 1291/1295
-Count unmapped reads1: 32
-Count unmapped reads2: 4
+Count unmapped1: 32
+Count unmapped2: 4
 Count placeholders1: 69
 Count placeholders2: 87
 Count mapped pairs: 1194
 Count primary alignments: 958
 Count secondary alignments: 236
 Count one-side alignments: 184
-Average idmp: 253.75795644891122
-Average tidmp: 141.38358458961474
-Average tlen: 915.1889352818372
   \end{lstlisting}
 \end{CenteredBox}
 \caption{Esempio di file \textit{.alignsinfo.txt}}
