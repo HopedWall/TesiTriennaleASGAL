@@ -1,4 +1,4 @@
-\section{Conversione in formato SAM}
+\section{Computazione degli allineamenti Spliced}
 
 \subsection{Descrizione generale}
 Come già detto, gli allineamenti ottenuti dallo Splice-Aware aligner sono in un formato non standard chiamato mem, che contiene solo informazioni relative ai MEM ottenuti in fase di allineamento. L'obiettivo di questa seconda parte è quello di convertire i due file mem in un singolo file SAM\footnote{\url{http://samtools.github.io/hts-specs/SAMv1.pdf}} (Sequence Alignment Map), il formato standard per memorizzare gli allineamenti.
@@ -19,11 +19,13 @@ Il formato SAM è composto da 11 campi:
 	\item \textbf{QUAL}: Valore che indica la qualità delle read
 \end{enumerate}
 
-Non si tratta solo di una semplice conversione, in quanto è necessario indurre diverse informazioni aggiuntive per avere un file SAM standard, quali: la posizione di inizio dell'allineamento sulla genomica, la stringa CIGAR, i flag relativi all'allineamento, ecc. Per supportare le read paired-end è stato necessario modificare gran parte di queste funzionalità. In particolare, è stata modificato il modo in cui vengono calcolati i campi FLAG, RNEXT, PNEXT e TLEN.
+Non si tratta solo di una semplice conversione, in quanto è necessario indurre diverse informazioni aggiuntive per avere un file SAM standard, quali: la posizione di inizio dell'allineamento sulla genomica, la stringa CIGAR, i flag relativi all'allineamento, ecc. 
+
+Per supportare le read paired-end è stato necessario modificare gran parte di queste funzionalità. In particolare, è stata modificato il modo in cui vengono calcolati i campi FLAG, RNEXT, PNEXT e TLEN.
 
 \newpage
 
-\subsection{Computazione del campo FLAG per read paired-end}
+\subsection{Campo FLAG per read paired-end}
 Il campo FLAG è il secondo del formato SAM e consiste di un valore numerico (ottenuto convertendo in decimale una serie di flag binari) che rappresenta le caratteristiche dell'allineamento preso in esame. La seguente immagine mostra il significato di ciascun bit del flag:
 
 \begin{figure}[h]
@@ -43,7 +45,7 @@ Si noti che per il momento non viene tenuto conto dei flag 0x200 e 0x400, ma que
 
 \newpage
 
-\subsection{Computazione dei campi RNEXT, PNEXT e TLEN}
+\subsection{Campi RNEXT, PNEXT e TLEN}
 I campi TLEN, RNEXT e PNEXT rappresentano rispettivamente il settimo, l'ottavo e il nono campo di ogni record del formato SAM; essi sono praticamente inutilizzati quando si allineano read single-end, ma nel formato paired-end assumono maggiore importanza. In particolare i campi RNEXT e PNEXT sono utilizzati da strumenti di visualizzazione degli allineamenti (come ad esempio IGV \cite{thorvaldsdottir2013integrative}) per permettere una corretta visualizzazione di una read e del suo mate.
 
 Il campo RNEXT contiene il nome dell'allineamento relativo al mate (ovvero il suo campo PNAME). Per semplicità, quando i due allineamenti sono consecutivi, si può lasciare il suo valore a '='.
@@ -56,8 +58,8 @@ La seguente immagine mostra un esempio di allineamento visualizzato da IGV:
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\linewidth]{images/mateinfo.png}
-  \caption{Informazioni sull'allineamento}
+	\includegraphics[width=\linewidth, height=10cm]{images/mateinfo2.png}
+  \caption{Informazioni sull'allineamento di una read e del suo mate usando IGV}
   \label{fig:MateInfo}
 \end{figure}
 

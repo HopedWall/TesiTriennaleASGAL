@@ -22,7 +22,7 @@ Il secondo compito di ASGAL è quello di allineare le read paired-end con la lin
 	\item Lunghezza della parte in comune
 \end{enumerate}
 	
-Come si può intuire dal nome, i MEM utilizzano il concetto di pattern matching esatto, rispetto  ai generici algoritmi di allineamento che ammettono dei mismatch o degli indel. Ad ogni allineamento corrisponde uno o più MEM.
+Come si può intuire dal nome, i MEM utilizzano il concetto di pattern matching esatto, rispetto  ai generici algoritmi di allineamento che ammettono dei mismatch o degli indel; ad ogni allineamento corrispondono uno o più MEM.
 
 Il nuovo formato paired-end è stato qui utilizzato per velocizzare il processo di allineamento ove possibile. Al momento non sono state utilizzate per migliorare l'efficacia dell'allineamento; si rimanda alla sezione "Sviluppi futuri" per informazioni su come questo potrebbe accadere.
 
@@ -76,7 +76,7 @@ Il seguente frammento di codice mostra la procedura:
 
 E' stato inoltre necessario introdurre un nuovo campo nel formato \textit{.mem}, che permette di distinguere il tipo di MEM preso in esame: ad esempio trovando come primo valore la stringa "MAPPED", si capisce che il MEM preso in esame è relativo ad una read che è stata mappata correttamente; ovviamente vale lo stesso ragionamento con le stringhe "UNMAPPED" e "PLACEHOLDER".
 
-L'immagine seguente mostra un esempio di file nel nuovo formato mem.
+L'immagine seguente mostra un esempio di file nel nuovo formato mem:
 
 \begin{figure}[h!]
 	\centering
