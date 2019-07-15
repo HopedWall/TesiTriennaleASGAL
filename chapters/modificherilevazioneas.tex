@@ -84,7 +84,7 @@ def mergeIntrons(introns1, introns2):
 
 %\newpage
 
-\subsection{Computazione dell' IDMP}
+\subsection{Calcolo dell' IDMP}
 Considerando una coppia di read, si definisce IDMP (Inner Distance between Mate Pairs) la distanza \textit{sul genoma di riferimento} tra l'ultima base della prima read e la prima della seconda. Questa informazione viene generalmente fornita dall'ente che ha effettuato il sequenziamento, e può essere confrontata con l'IDMP rilevato durante l'allineamento per rilevare nuovi eventi di Alternative Splicing.
 
 Visto che un allineamento può essere rappresentato da più di un MEM, non è possibile semplicemente aggiungere la lunghezza dell'allineamento alla sua posizione iniziale. Prima di poter calcolare l'IDMP è quindi necessario introdurre il concetto di BitVector, ovvero una sequenza di bit che rappresenta la posizione degli esoni nello Splicing Graph. Un BitVector è dotato di due operazioni, entrambe svolte in tempo costante:
@@ -132,7 +132,7 @@ def getIdmp(start2, mems1, bv, exPos):
 
 %\newpage
 
-\subsection{Computazione del TIDMP}
+\subsection{Calcolo del TIDMP}
 Per TIDMP si intende la misura della distanza \textit{sui trascritti} tra le due read. Per calcolarlo è innanzitutto necessario ottenere l'ultimo MEM relativo alla prima read e il primo MEM relativo alla seconda. Da ciascuno di essi è possibile ottenere la posizione iniziale e la lunghezza sul bitvector. 
 
 A questo punto, usando l'operazione di rank, è possibile capire l'esone di provenienza di ciascun MEM.

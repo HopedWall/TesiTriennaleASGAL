@@ -28,7 +28,7 @@ Il nuovo formato paired-end è stato qui utilizzato per velocizzare il processo 
 
 \newpage
 
-Il risultato dell'allineamento sarà restituito, per comodità, nel formato \textit{.mem} così composto:
+Il risultato dell'allineamento sarà restituito, per comodità, nel formato \textit{.mem}\footnote{MEM indica in generale i Maximum Exact Matches, \textit{.mem} o \textit{mem} indica il formato di file che contiene tutti i MEM generati a partire da un file contente una o più read} così composto:
 
 \begin{itemize}
 	\item Lo \textbf{strand} dell'allineamento
@@ -52,7 +52,10 @@ Non è però detto che entrambe le estremità siano coinvolte nello stesso numer
 \subsection{Introduzione di read unmapped e placeholder nel formato mem}
 Nei file mem ottenuti dallo Splice-Aware Aligner vengono ora visuallizati due nuovi tipi di MEM: quelli relativi alle read unmapped e quelli relativi ai placeholder. Il primo caso è banale, e rappresenta tutte quelle read che non hanno un matching esatto di lunghezza considerevole con il genoma dato in input.
 
-Il secondo caso è più complesso e rappresenta un insieme di read fasulle utilizzate solo come padding per avere due file MEM della stessa lunghezza: questo facilita enormemente l'elaborazione nello step successivo (la formattazione SAM). Come detto in precedenza quando si lavora con read paired-end è sempre necessario lavorare a coppie, ma non sempre ad uno stesso pair è associato lo stesso numero di allineamenti secondari: è qui che entrano in gioco i placeholder. 
+Il secondo caso è più complesso e rappresenta un insieme di read fasulle utilizzate solo come padding per avere due file MEM della stessa lunghezza: questo facilita enormemente l'elaborazione nello step successivo. 
+\newpage
+
+Come detto in precedenza quando si lavora con read paired-end è sempre necessario lavorare a coppie, ma non sempre ad uno stesso pair è associato lo stesso numero di allineamenti secondari: è qui che entrano in gioco i placeholder. 
 
 I placeholder sono stati implementati in questo modo: si tengono due contatori (che rappresentano rispettivamente il numero di allineamenti relativi alla prima read e quelli relativi alla seconda read), si ottengono separatamente gli allineamenti relativi a ciascuna delle due read, e si controllano i contatori. Si prende il minore dei due e si aggiungono tanti placeholder quanto bastano per rendere uguali i contatori.
 
@@ -99,7 +102,7 @@ La seguente immagine descrive tutte le possibili combinazioni:
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth, height=10cm]{images/fragmentlibrarytypes.png}
-  \caption{I diversi tipi di FTL}
+  \caption{I diversi tipi di fragment library types}
   \label{fig:FragmentLibraryTypes}
 \end{figure}
 
