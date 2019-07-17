@@ -5,7 +5,7 @@ ASGAL (Alternative Splicing Graph ALigner) \cite{denti2018asgal} è un tool svil
 \begin{enumerate}
 	\item \textbf{Costruzione dello splicing graph}: a partire dall'annotazione di un gene e dalla genomica di riferimento, ASGAL costruisce uno splicing graph, ovvero una struttura a grafo che rappresenta tutti i trascritti noti del gene in input. Viene inoltre prodotta una linearizzazione dello splicing graph, che sarà utilizzata in fase di allineamento.
 	\item \textbf{Allineamento Splice-Aware}: utilizzando gli algoritmi in \cite{beretta2017mapping} e \cite{ohlebusch2010computing} ASGAL allinea le RNA-Seq reads con la linearizzazione dello splicing graph del gene in input. L'allineamento è Splice-Aware in quanto è necessario tenere traccia della posizione di esoni ed introni per un corretto allineamento.
-	\item \textbf{Computazione degli allineamenti Spliced (opzionale)}: gli allineamenti ottenuti dall'Allineatore Splice-Aware vengono convertiti nel formato SAM, per permetterne l'elaborazione con strumenti standard.
+	\item \textbf{Computazione degli allineamenti Spliced(opzionale)}: gli allineamenti ottenuti dall'Allineatore Splice-Aware vengono convertiti nel formato SAM, per permetterne l'elaborazione con strumenti standard.
 	\item \textbf{Rilevazione degli eventi di Alternative Splicing}: gli allineamenti prodotti dall'Allineatore Splice-Aware sono analizzati per rilevare gli eventi di Alternative Splicing indotti dalle read del campione. Gli eventi rilevati sono visualizzati in un file csv, che include diverse informazioni su ciascun evento rilevato.
 \end{enumerate}
 
